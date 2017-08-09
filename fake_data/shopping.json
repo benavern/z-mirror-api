@@ -1,0 +1,12 @@
+{
+    "list": [
+        {
+            "item": "carottes",
+            "done": false
+        },
+        {
+            "item": "patates",
+            "done": true
+        }
+    ]
+}

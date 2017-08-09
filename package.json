@@ -1,0 +1,23 @@
+{
+  "name": "z-mirror-api",
+  "version": "1.0.0",
+  "description": "z-mirror api",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benavern/z-mirror-api.git"
+  },
+  "author": "Benjamin Caradeuc <https://caradeuc.info>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/benavern/z-mirror-api/issues"
+  },
+  "homepage": "https://github.com/benavern/z-mirror-api#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4"
+  }
+}
