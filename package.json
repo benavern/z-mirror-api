@@ -19,6 +19,7 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
+    "pg-promise": "^6.3.8",
     "uniqid": "^4.1.1"
   }
 }
