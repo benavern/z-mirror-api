@@ -14,10 +14,17 @@ const data = {
 }
 
 const uniqid = require('uniqid')
+const db = require('../db')
 
 module.exports = {
     get (req, res) {
-        res.json(data)
+        db.any('select * from shopping')
+        .then(function (data) {
+          res.json({ list: data });
+        })
+        .catch(function (error) {
+          res.status(500).send({ error })
+        });
     },
     add (req, res) {
         const item = req.body

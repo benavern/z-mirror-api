@@ -18,17 +18,13 @@ const uniqid = require('uniqid')
 const db = require('../db')
 
 module.exports = {
-    /**
-     * Get all the postits
-     * 
-     */
     get (req, res) {
         db.any('select * from postit')
         .then(function (data) {
           res.json({ list: data });
         })
-        .catch(function (err) {
-          res.status(500).json({ error: 'ooops' })
+        .catch(function (error) {
+          res.status(500).send({ error })
         });
     },
     add (req, res) {
