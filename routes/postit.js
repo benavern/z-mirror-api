@@ -18,7 +18,7 @@ module.exports = {
         const item = req.body
         item.uid = uniqid()
 
-        db.none('INSERT INTO postit (content, uid) VALUES (${item}, ${done}, ${uid})', item)
+        db.none('INSERT INTO postit (content, uid) VALUES (${content}, ${uid})', item)
         .then(function () {
             res.json({ status: 'success' });
         })
