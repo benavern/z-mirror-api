@@ -53,10 +53,15 @@ module.exports = {
         });
     },
     remove(req, res) {
-        const uid = req.body.uid
-        data.list = data.list.filter(item => item.uid !== uid)
-        notImplemented('remove')
-        res.json(data)
+        const item = req.body
+        
+        db.none('DELETE FROM shopping WHERE uid=${uid}', item)
+        .then(function (data) {
+            res.json({ status: 'success' });
+        })
+        .catch(function (error) {
+          res.status(500).send({ error })
+        });
     }
 }
 
