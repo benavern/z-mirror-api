@@ -42,13 +42,15 @@ module.exports = {
         });
     },
     update(req, res) {
-        const newItem = req.body
-        data.list = data.list.map(item => {
-            if (item.uid === newItem.uid) item = newItem
-            return item
+        const item = req.body
+        
+        db.none('UPDATE shopping SET item=${item}, done=${done} WHERE uid=${uid}', item)
+        .then(function (data) {
+            res.json({ status: 'success' });
         })
-        notImplemented('update')
-        res.json(newItem)
+        .catch(function (error) {
+          res.status(500).send({ error })
+        });
     },
     remove(req, res) {
         const uid = req.body.uid
