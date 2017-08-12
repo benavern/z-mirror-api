@@ -20,7 +20,10 @@ module.exports = {
     get (req, res) {
         db.any('select * from shopping')
         .then(function (data) {
-          res.json({ list: data });
+            res.json({ 
+                list: data,
+                status: 'success'
+            });
         })
         .catch(function (error) {
           res.status(500).send({ error })
@@ -29,8 +32,14 @@ module.exports = {
     add (req, res) {
         const item = req.body
         item.uid = uniqid()
-        notImplemented('add')
-        res.json(item)
+
+        db.none('INSERT INTO shopping (item, done, uid) VALUES (${item}, ${done}, ${uid})', item)
+        .then(function (data) {
+            res.json({ status: 'success' });
+        })
+        .catch(function (error) {
+          res.status(500).send({ error })
+        });
     },
     update(req, res) {
         const newItem = req.body

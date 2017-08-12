@@ -21,10 +21,10 @@ module.exports = {
     get (req, res) {
         db.any('select * from postit')
         .then(function (data) {
-          res.json({ list: data });
+            res.json({ list: data });
         })
         .catch(function (error) {
-          res.status(500).send({ error })
+            res.status(500).send({ error })
         });
     },
     add (req, res) {
