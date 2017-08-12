@@ -27,7 +27,7 @@ module.exports = {
         });
     },
     update(req, res) {
-        const newItem = req.body
+        const item = req.body
         
         db.none('UPDATE postit SET content=${content} WHERE uid=${uid}', item)
         .then(function () {
@@ -38,7 +38,7 @@ module.exports = {
         });
     },
     remove(req, res) {
-        const uid = req.body.uid
+        const item = req.body
         
         db.none('DELETE FROM postit WHERE uid=${uid}', item)
         .then(function () {
