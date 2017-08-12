@@ -1,10 +1,16 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const port = process.env.PORT || 5000
 const app = express()
 
 app.use(bodyParser.json())
-
-const port = process.env.PORT || 5000
+app.use(function(err, req, res, next) {
+    res.status(err.status || 500)
+        .json({
+            status: 'error',
+            message: err.message
+        })
+})
 
 const shopping = require('./routes/shopping.js')
 const postit = require('./routes/postit.js')

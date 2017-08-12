@@ -1,19 +1,3 @@
-const data = {
-    list: [
-        {
-            text: 'Lorem',
-            dt: 1502307326,
-            uid: 'postit1'
-        },
-        {
-            text: 'Ipsum',
-            dt: 1502307326,
-            uid: 'postit2'
-        }
-    ]
-}
-
-
 const uniqid = require('uniqid')
 const db = require('../db')
 
@@ -21,35 +5,47 @@ module.exports = {
     get (req, res) {
         db.any('select * from postit')
         .then(function (data) {
-            res.json({ list: data });
+            res.json({ 
+                data,
+                status: 'success'
+            });
         })
-        .catch(function (error) {
-            res.status(500).send({ error })
+        .catch(function (err) {
+            return next(err);
         });
     },
     add (req, res) {
         const item = req.body
         item.uid = uniqid()
-        notImplemented('add')
-        res.json(item)
+
+        db.none('INSERT INTO postit (content, uid) VALUES (${item}, ${done}, ${uid})', item)
+        .then(function () {
+            res.json({ status: 'success' });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
     },
     update(req, res) {
         const newItem = req.body
-        data.list = data.list.map(item => {
-            if (item.uid === newItem.uid) item = newItem
-            return item
+        
+        db.none('UPDATE postit SET content=${content} WHERE uid=${uid}', item)
+        .then(function () {
+            res.json({ status: 'success' });
         })
-        notImplemented('update')
-        res.json(newItem)
+        .catch(function (err) {
+            return next(err);
+        });
     },
     remove(req, res) {
         const uid = req.body.uid
-        data.list = data.list.filter(item => item.uid !== uid)
-        notImplemented('remove')
-        res.json(data)
+        
+        db.none('DELETE FROM postit WHERE uid=${uid}', item)
+        .then(function () {
+            res.json({ status: 'success' });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
     }
-}
-
-function notImplemented (txt) {
-    console.log(`[Postit] ${txt}`)
 }

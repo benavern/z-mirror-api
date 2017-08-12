@@ -1,18 +1,3 @@
-const data = {
-    list: [
-        {
-            item: 'carottes',
-            done: false,
-            uid: 'shopping1'
-        },
-        {
-            item: 'patates',
-            done: true,
-            uid: 'shopping2'
-        }
-    ]
-}
-
 const uniqid = require('uniqid')
 const db = require('../db')
 
@@ -21,12 +6,12 @@ module.exports = {
         db.any('select * from shopping')
         .then(function (data) {
             res.json({ 
-                list: data,
+                data,
                 status: 'success'
             });
         })
-        .catch(function (error) {
-          res.status(500).send({ error })
+        .catch(function (err) {
+            return next(err);
         });
     },
     add (req, res) {
@@ -34,37 +19,33 @@ module.exports = {
         item.uid = uniqid()
 
         db.none('INSERT INTO shopping (item, done, uid) VALUES (${item}, ${done}, ${uid})', item)
-        .then(function (data) {
+        .then(function () {
             res.json({ status: 'success' });
         })
-        .catch(function (error) {
-          res.status(500).send({ error })
+        .catch(function (err) {
+            return next(err);
         });
     },
     update(req, res) {
         const item = req.body
         
         db.none('UPDATE shopping SET item=${item}, done=${done} WHERE uid=${uid}', item)
-        .then(function (data) {
+        .then(function () {
             res.json({ status: 'success' });
         })
-        .catch(function (error) {
-          res.status(500).send({ error })
+        .catch(function (err) {
+            return next(err);
         });
     },
     remove(req, res) {
         const item = req.body
         
         db.none('DELETE FROM shopping WHERE uid=${uid}', item)
-        .then(function (data) {
+        .then(function () {
             res.json({ status: 'success' });
         })
-        .catch(function (error) {
-          res.status(500).send({ error })
+        .catch(function (err) {
+            return next(err);
         });
     }
-}
-
-function notImplemented (txt) {
-    console.log(`[Shopping] ${txt}`)
 }
