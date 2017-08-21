@@ -19,7 +19,22 @@ module.exports = {
         });
     },
     add (req, res) {
-        // console.log(req.body.photo)
-        res.end(req.body.photo)
+        const item = req.body
+        item.uid = uniqid()
+
+        cloudinary.v2.uploader
+            .upload(
+                item.photo,
+                result => {
+                    item.url = result.url
+                    db.none('INSERT INTO photos (url, title, uid) VALUES (${url}, ${title}, ${uid})', item)
+                    .then(function () {
+                        res.json({ status: 'success' });
+                    })
+                    .catch(function (err) {
+                        return next(err);
+                    });
+                }
+            )
     }
 }
