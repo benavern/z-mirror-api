@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     cloudinary: {
         cloud_name: 'zezen',
         api_key: '987773547344386',
