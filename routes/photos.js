@@ -19,7 +19,7 @@ module.exports = {
         });
     },
     add (req, res) {
-        console.log(req.body.photo)
+        // console.log(req.body.photo)
         res.end(req.body.photo)
     }
 }
