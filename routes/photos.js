@@ -41,6 +41,17 @@ module.exports = {
                 }
             )
     },
+    update(req, res, next) {
+        const item = req.body
+        
+        db.none('UPDATE photos SET title=${title} WHERE uid=${uid}', item)
+        .then(function () {
+            res.json({ status: 'success' });
+        })
+        .catch(function (err) {
+            return next(err);
+        });
+    },
     remove (req, res, next) {
         const item = req.body
 

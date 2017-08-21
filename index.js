@@ -63,7 +63,7 @@ app.route('/postit')
 app.route('/photos')
     .get(photos.get)
     .post(photos.add)
-    // .put(photos.update)
+    .put(photos.update)
     .delete(photos.remove)
 
 /**
