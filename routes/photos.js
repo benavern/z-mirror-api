@@ -1,9 +1,6 @@
 const uniqid = require('uniqid')
 const db = require('../db')
 const cloudinary = require('cloudinary')
-const config = require('../config').cloudinary
-
-cloudinary.config(config);
 
 module.exports = {
     get (req, res, next) {

@@ -9,6 +9,7 @@ This is my z-mirror api application
     ```
     git clone https://github.com/benavern/z-mirror-api && cd z-mirror-api
     ```
+    ```
 1. Create a new heroku app
     ```
     heroku create
@@ -17,6 +18,9 @@ This is my z-mirror api application
     ```
     heroku create 
     ```
+1. Create an account on [cloudinary](https://cloudinary.com/) & add your cloudinary_url to the heroku config
+    ```
+    heroku config:set CLOUDINARY_URL=[[YOUR_CLOUDINARY_URL]]
 1. Add your app a database
     ```
     heroku addons:create heroku-postgresql:hobby-dev
