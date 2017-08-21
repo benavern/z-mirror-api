@@ -1,5 +1,9 @@
 const uniqid = require('uniqid')
 const db = require('../db')
+const cloudinary = require('cloudinary')
+const config = require('../config').cloudinary
+
+cloudinary.config(config);
 
 module.exports = {
     get (req, res) {
@@ -13,5 +17,9 @@ module.exports = {
         .catch(function (err) {
             return next(err);
         });
+    },
+    add (req, res) {
+        console.log(req.body.photo)
+        res.end(req.body.photo)
     }
 }

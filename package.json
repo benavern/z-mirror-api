@@ -18,6 +18,7 @@
   "homepage": "https://github.com/benavern/z-mirror-api#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "cloudinary": "^1.9.0",
     "express": "^4.15.4",
     "pg-promise": "^6.3.8",
     "uniqid": "^4.1.1"
