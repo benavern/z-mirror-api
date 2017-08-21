@@ -6,7 +6,7 @@ const config = require('../config').cloudinary
 cloudinary.config(config);
 
 module.exports = {
-    get (req, res) {
+    get (req, res, next) {
         db.any('select * from photos')
         .then(function (data) {
             res.json({ 
@@ -18,7 +18,7 @@ module.exports = {
             return next(err);
         });
     },
-    add (req, res) {
+    add (req, res, next) {
         const item = req.body
         item.uid = uniqid()
 

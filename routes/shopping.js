@@ -2,7 +2,7 @@ const uniqid = require('uniqid')
 const db = require('../db')
 
 module.exports = {
-    get (req, res) {
+    get (req, res, next) {
         db.any('select * from shopping')
         .then(function (data) {
             res.json({ 
@@ -14,7 +14,7 @@ module.exports = {
             return next(err);
         });
     },
-    add (req, res) {
+    add (req, res, next) {
         const item = req.body
         item.uid = uniqid()
 
@@ -26,7 +26,7 @@ module.exports = {
             return next(err);
         });
     },
-    update(req, res) {
+    update(req, res, next) {
         const item = req.body
         
         db.none('UPDATE shopping SET item=${item}, done=${done} WHERE uid=${uid}', item)
@@ -37,7 +37,7 @@ module.exports = {
             return next(err);
         });
     },
-    remove(req, res) {
+    remove(req, res, next) {
         const item = req.body
         
         db.none('DELETE FROM shopping WHERE uid=${uid}', item)
