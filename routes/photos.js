@@ -40,5 +40,24 @@ module.exports = {
                     });
                 }
             )
+    },
+    remove (req, res, next) {
+        const item = req.body
+
+        cloudinary.v2.uploader
+            .destroy(
+                item.public_id,
+                (error, result) => {
+
+                    if (error) return next(error)
+                    db.none('DELETE FROM photos WHERE uid=${uid}', item)
+                    .then(function () {
+                        res.json({ status: 'success' });
+                    })
+                    .catch(function (err) {
+                        return next(err);
+                    });
+                }
+            )
     }
 }
