@@ -22,6 +22,7 @@ app.use(function(err, req, res, next) {
 
 const shopping = require('./routes/shopping.js')
 const postit = require('./routes/postit.js')
+const photos = require('./routes/photos.js')
 
 /**
  * ================================
@@ -53,6 +54,17 @@ app.route('/postit')
     .post(postit.add)
     .put(postit.update)
     .delete(postit.remove)
+
+/**
+ * ========================
+ * PHOTOS
+ * ========================
+ */
+app.route('/photos')
+    .get(photos.get)
+    // .post(photos.add)
+    // .put(photos.update)
+    // .delete(photos.remove)
 
 /**
  * Start the app
