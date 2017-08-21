@@ -30,7 +30,8 @@ module.exports = {
                     if (error) return next(error)
 
                     item.url = result.url
-                    db.none('INSERT INTO photos (url, title, uid) VALUES (${url}, ${title}, ${uid})', item)
+                    item.public_id = result.public_id
+                    db.none('INSERT INTO photos (url, title, public_id, uid) VALUES (${url}, ${title}, ${public_id}, ${uid})', item)
                     .then(function () {
                         res.json({ status: 'success' });
                     })
