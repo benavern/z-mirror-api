@@ -25,7 +25,10 @@ module.exports = {
         cloudinary.v2.uploader
             .upload(
                 item.photo,
-                result => {
+                (error, result) => {
+
+                    if (error) return next(error)
+
                     item.url = result.url
                     db.none('INSERT INTO photos (url, title, uid) VALUES (${url}, ${title}, ${uid})', item)
                     .then(function () {
