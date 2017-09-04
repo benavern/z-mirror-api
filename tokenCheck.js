@@ -8,12 +8,7 @@ module.exports = function(req, res, next) {
     } else {
         res.status(401).json({
             status: 'error',
-            message: 'You are not allowed to modify data here!',
-            headers: req.headers,
-            method: req.method,
-            token,
-            received,
-            secured
+            message: 'You are not allowed to modify data here!'
         })
     }
 }
