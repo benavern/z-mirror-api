@@ -8,7 +8,7 @@ app.use(bodyParser.json({limit: '2mb'}))
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*")
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, X-Z_MIRROR_TOKEN")
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
     next()
 });
