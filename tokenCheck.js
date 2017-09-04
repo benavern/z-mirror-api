@@ -11,6 +11,8 @@ module.exports = function(req, res, next) {
             message: 'You are not allowed to modify data here!',
             headers: req.headers,
             method: req.method,
+            token,
+            received,
             secured
         })
     }
