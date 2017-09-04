@@ -16,11 +16,17 @@ This is my z-mirror api application
     ```
     _You can name your app here:_
     ```
-    heroku create 
+    heroku create [[YOUR_DESIRED_API_NAME]]
     ```
 1. Create an account on [cloudinary](https://cloudinary.com/) & add your cloudinary_url to the heroku config
     ```
     heroku config:set CLOUDINARY_URL=[[YOUR_CLOUDINARY_URL]]
+    ```
+1. Add a Token to your api so that you'll be able to post/put/delete. It can be whatever you want as a string
+    ```
+    heroku config:set Z_MIRROR_TOKEN=[[YOUR_TOKEN]]
+    ```
+
 1. Add your app a database
     ```
     heroku addons:create heroku-postgresql:hobby-dev
